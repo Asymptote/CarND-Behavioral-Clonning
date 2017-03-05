@@ -95,6 +95,14 @@ Data near 0 degrees was removed to make the distribution normal. Steering angle 
 
 Since it the data is now normal, I proceeded with training the new Model.
 
+**Cropping:**
+
+Model was further enhanced by adding Cropping layer, which removed the 70 pixel rows form top and 25 pixel rows from bottom.
+**Top 70:** Because the top includes the environment like trees and sky, which are not necessary and is a hurdle to make model more rebust.
+**Bottom 25:** Because it includes the car bonnet, which remains static.
+
+This further reduced the strain on memory requirements.
+
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
 To combat the overfitting, I modified the model and added dropout layers.
@@ -135,6 +143,22 @@ Left and Right camera images were added, with adjusted angles:
 ![Alt text](./s3.png)
 
 
+
+
+
 Finally, I randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was around 4-5, mse was not improving much after that. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+
+**Finally tested the model on both tracks:**
+
+**Track1**
+Car drove flawlessly but with a little jittery movement.
+![Alt text](./Screenshot 2017-03-05 11:40:26.png)
+
+
+**Track2**
+Although it drove fine but could not complete the whole track. I need to include more data from track 2 in the training.
+![Alt text](./Screenshot 2017-03-05 11:41:05.png)
+![Alt text](./Screenshot 2017-03-05 11:40:54.png)
