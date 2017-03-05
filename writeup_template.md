@@ -75,9 +75,25 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-My first step was to use a convolution neural network on centre images (as discussed in the lectures). But results were very discouraging because the data was skewed or biased towards 0 degrees and then towards left. The car could barely pass the second curve.
+My first step was to use a convolution neural network on **centre camera** images (as discussed in the lectures). But results were very discouraging because the data was skewed or biased towards 0 degrees and then towards left. The car could barely pass the second curve.
+
+Next approach was to include all three camera images: **left, center & right**
+![Alt text](./grid.png)
+
+
+
+
+**Histogram of Steering angle**
+![Alt text](./s1.png)
+
+As visible, the data was skewed to near 0 degrees.
 
 Data near 0 degrees was removed to make the distribution normal. Steering angle was distributed in 100 bins and it was made sure that central bins (close to 0 degrees) do not include more than 100 records. This resulted in some-what normally distributed records w.r.t steering angle. To further balance the data I also added left & right camera images and adjusted the steering angle by adding and subtracting 0.25 degrees respectively.
+
+**Result:**
+![Alt text](./s3.png)
+
+Since it the data is now normal, I proceeded with training the new Model.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 

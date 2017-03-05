@@ -39,7 +39,7 @@ def telemetry(sid, data):
         image_array = cv2.cvtColor(image_array, cv2.COLOR_RGB2YUV)
         steering_angle = float(model.predict(image_array[None, :, :, :], batch_size=1))
         min_speed = 10
-        max_speed = 17
+        max_speed = 30
         if float(speed) < min_speed:
             throttle = 1.0
         elif float(speed) > max_speed:
